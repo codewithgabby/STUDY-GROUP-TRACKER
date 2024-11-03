@@ -7,6 +7,7 @@ body {
     color: #333;
 }
 
+/* Header Styles */
 header {
     background-color: #4CAF50;
     color: #fff;
@@ -24,6 +25,7 @@ header p {
     margin-top: 0.5rem;
 }
 
+/* Section Styles */
 section {
     margin: 1rem;
     padding: 1rem;
@@ -32,30 +34,36 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    color: #4CAF50;
+/* Form and Label Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Adds spacing between form elements */
 }
 
 form label {
-    display: block;
-    margin: 0.5rem 0 0.25rem;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
 }
 
+/* Input and Button Styles */
 form input, form button {
     width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 0.75rem;
+    padding: 0.6rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 1rem;
+    box-sizing: border-box; /* Ensures padding does not affect width */
 }
 
+/* Focus Style for Inputs */
 form input:focus {
     border-color: #4CAF50;
     outline: none;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
+/* Button Styling */
 form button {
     background-color: #4CAF50;
     color: white;
@@ -68,6 +76,7 @@ form button:hover {
     background-color: #45a049;
 }
 
+/* Session List Styles */
 #sessionList {
     list-style: none;
     padding: 0;
@@ -88,6 +97,7 @@ form button:hover {
     transform: scale(1.02);
 }
 
+/* Delete Button Styling */
 .deleteButton {
     background-color: #ff4d4d;
     border: none;
