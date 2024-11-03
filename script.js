@@ -9,8 +9,23 @@ const totalHoursElement = document.getElementById("totalHours");
 const streakElement = document.getElementById("streak");
 const subjectProgressContainer = document.getElementById("subjectProgressContainer");
 const hoursPerSubjectElement = document.getElementById("hoursPerSubject");
+const taskNameInput = document.getElementById("task-name");
+const taskList = document.getElementById("task-list");
 
-let studySessions = [];
+let studySessions = JSON.parse(localStorage.getItem('studySessions')) || [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+// Load existing sessions and tasks from local storage
+window.onload = () => {
+    studySessions.forEach(displaySession);
+    updateTotalHours();
+    updateProgressBars();
+    updateStreak();
+    updateAnalytics();
+
+    tasks.forEach(displayTask);
+    updateTaskAnalytics();
+};
 
 // Function to log a study session
 logForm.addEventListener("submit", (event) => {
@@ -23,6 +38,7 @@ logForm.addEventListener("submit", (event) => {
     };
 
     studySessions.push(session);
+    localStorage.setItem('studySessions', JSON.stringify(studySessions)); // Save to local storage
     displaySession(session);
     updateTotalHours();
     updateProgressBars();
@@ -49,6 +65,7 @@ function deleteSession(button, hours) {
     );
     if (sessionIndex > -1) {
         studySessions.splice(sessionIndex, 1);
+        localStorage.setItem('studySessions', JSON.stringify(studySessions)); // Update local storage
     }
 
     updateTotalHours();
@@ -141,38 +158,15 @@ function getRandomColor() {
 
 // Task Tracker
 function addTask() {
-    const taskNameInput = document.getElementById("task-name");
-    const taskList = document.getElementById("task-list");
-
     if (taskNameInput.value.trim() !== "") {
-        const newTask = document.createElement("li");
-        newTask.classList.add("task-item");
+        const newTask = {
+            name: taskNameInput.value,
+            completed: false
+        };
 
-        // Checkbox to mark task as completed
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.classList.add("task-checkbox");
-        checkbox.addEventListener("change", updateTaskAnalytics);
-
-        // Task name text
-        const taskText = document.createElement("span");
-        taskText.classList.add("task-text");
-        taskText.textContent = taskNameInput.value;
-
-        // Delete button for the task
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("delete-task-btn");
-        deleteButton.textContent = "Delete";
-        deleteButton.addEventListener("click", function() {
-            taskList.removeChild(newTask);
-            updateTaskAnalytics();
-        });
-
-        // Append elements to the new task item
-        newTask.appendChild(checkbox);
-        newTask.appendChild(taskText);
-        newTask.appendChild(deleteButton);
-        taskList.appendChild(newTask);
+        tasks.push(newTask);
+        localStorage.setItem('tasks', JSON.stringify(tasks)); // Save to local storage
+        displayTask(newTask);
 
         // Clear the input field after adding the task
         taskNameInput.value = "";
@@ -184,7 +178,40 @@ function addTask() {
     }
 }
 
-// Task Analytics
+function displayTask(task) {
+    const taskItem = document.createElement("li");
+    taskItem.classList.add("task-item");
+
+    // Checkbox to mark task as completed
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("task-checkbox");
+    checkbox.checked = task.completed;
+    checkbox.addEventListener("change", updateTaskAnalytics);
+
+    // Task name text
+    const taskText = document.createElement("span");
+    taskText.classList.add("task-text");
+    taskText.textContent = task.name;
+
+    // Delete button for the task
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-task-btn");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", function() {
+        taskList.removeChild(taskItem);
+        tasks = tasks.filter(t => t.name !== task.name); // Remove the task from the array
+        localStorage.setItem('tasks', JSON.stringify(tasks)); // Update local storage
+        updateTaskAnalytics();
+    });
+
+    // Append elements to the new task item
+    taskItem.appendChild(checkbox);
+    taskItem.appendChild(taskText);
+    taskItem.appendChild(deleteButton);
+    taskList.appendChild(taskItem);
+}
+
 function updateTaskAnalytics() {
     const taskItems = document.querySelectorAll(".task-item");
     const totalTasks = taskItems.length;
@@ -199,3 +226,6 @@ function updateTaskAnalytics() {
 
 // Event listener for the "Add Task" button
 document.getElementById("add-task-btn").addEventListener("click", addTask);
+
+// Load tasks from local storage on page load
+tasks.forEach(displayTask);
