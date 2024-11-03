@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>📘 Study Group Tracker</h1>
+        <p><strong>HI ALTSCHOOLERS!</strong> Track your study hours and stay motivated!</p>
+    </header>
+
+    <section id="logFormSection">
+        <h2>📝 Add Study Session</h2>
+        <form id="logForm">
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" placeholder="e.g., html, data science, javascript" required>
+
+            <label for="hours">Hours:</label>
+            <input type="number" id="hours" placeholder="e.g., 2" min="0.5" step="0.5" required>
+
+            <button type="submit">Log Study Session</button>
+        </form>
+    </section>
+
+    <section id="sessions">
+        <h2>📅 Logged Sessions</h2>
+        <ul id="sessionList"></ul>
+    </section>
+
+    <section id="progress">
+        <h2>📈 Progress</h2>
+        <div id="subjectProgressContainer"></div>
+        <p>Total Hours Studied: <span id="totalHours">0</span></p>
+        <p>Study Streak: <span id="streak">0</span> days</p>
+    </section>
+
+    <section id="analytics">
+        <h2>📊 Analytics</h2>
+        <div id="hoursPerSubject"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

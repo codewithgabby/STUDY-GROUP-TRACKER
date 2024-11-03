@@ -1,0 +1,124 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f7fa;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+section {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #4CAF50;
+}
+
+form label {
+    display: block;
+    margin: 0.5rem 0 0.25rem;
+}
+
+form input, form button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+#sessionList {
+    list-style: none;
+    padding: 0;
+}
+
+#sessionList li {
+    background-color: #e8f5e9;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
+}
+
+#sessionList li:hover {
+    transform: scale(1.02);
+}
+
+.deleteButton {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 0.4rem 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+    background-color: #ff1a1a;
+}
+
+/* Progress Bars */
+.progress-container {
+    background-color: #ddd;
+    border-radius: 5px;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #4CAF50;
+    width: 0%; /* Set by JavaScript */
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 0.8rem;
+    transition: width 0.4s ease;
+}
