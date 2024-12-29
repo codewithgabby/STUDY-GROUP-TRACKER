@@ -1,6 +1,6 @@
 # Study Group Tracker
 
-Live Demo: Study Tracker (https://thegabbycodes.github.io/STUDY-GROUP-TRACKER/)
+Live Demo: Study Tracker (https://codewithgabby.github.io/STUDY-GROUP-TRACKER/)
 
 ## Introduction
 Welcome to the Study Group Tracker! This web application is designed to assist study groups in managing and tracking their tasks effectively. It aims to enhance accountability and commitment among group members by providing a simple yet efficient way to keep track of study activities.
